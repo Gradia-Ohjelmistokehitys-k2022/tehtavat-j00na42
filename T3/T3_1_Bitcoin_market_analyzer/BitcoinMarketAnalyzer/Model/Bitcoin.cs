@@ -16,8 +16,9 @@ namespace BitcoinMarketAnalyzer.Model
         public decimal Total_volume { get; set; }
     }
 
+
     public class BitcoinJsonResponse // JSON response model
-    { 
+    {
         public string[,] Prices { get; set; }
         public string[,] Market_caps { get; set; }
         public string[,] Total_volumes { get; set; }
