@@ -34,20 +34,27 @@
             label2 = new Label();
             btnFindFromDates = new Button();
             dataGVBitcoin = new DataGridView();
-            groupBox1 = new GroupBox();
-            groupBox2 = new GroupBox();
+            gbDateSearch = new GroupBox();
+            gbBitcoinValue = new GroupBox();
             maxValue = new Label();
             minValue = new Label();
             label6 = new Label();
             label5 = new Label();
             maxDate = new Label();
             minDate = new Label();
-            groupBox3 = new GroupBox();
+            gbTradingVolume = new GroupBox();
+            maxVolumeDateLbl = new Label();
+            minVolumeDateLbl = new Label();
+            maxVolumelbl = new Label();
+            minVolumeLbl = new Label();
+            label4 = new Label();
+            label3 = new Label();
             groupBox4 = new GroupBox();
             groupBox5 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)dataGVBitcoin).BeginInit();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
+            gbDateSearch.SuspendLayout();
+            gbBitcoinValue.SuspendLayout();
+            gbTradingVolume.SuspendLayout();
             SuspendLayout();
             // 
             // dateStart
@@ -112,57 +119,57 @@
             dataGVBitcoin.TabIndex = 5;
             dataGVBitcoin.CellContentClick += dataGVBitcoin_CellContentClick;
             // 
-            // groupBox1
+            // gbDateSearch
             // 
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(dateStart);
-            groupBox1.Controls.Add(btnFindFromDates);
-            groupBox1.Controls.Add(dateEnd);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Location = new Point(867, 12);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(279, 156);
-            groupBox1.TabIndex = 6;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Dates";
+            gbDateSearch.Controls.Add(label1);
+            gbDateSearch.Controls.Add(dateStart);
+            gbDateSearch.Controls.Add(btnFindFromDates);
+            gbDateSearch.Controls.Add(dateEnd);
+            gbDateSearch.Controls.Add(label2);
+            gbDateSearch.Location = new Point(867, 12);
+            gbDateSearch.Name = "gbDateSearch";
+            gbDateSearch.Size = new Size(279, 157);
+            gbDateSearch.TabIndex = 6;
+            gbDateSearch.TabStop = false;
+            gbDateSearch.Text = "Dates";
             // 
-            // groupBox2
+            // gbBitcoinValue
             // 
-            groupBox2.Controls.Add(maxValue);
-            groupBox2.Controls.Add(minValue);
-            groupBox2.Controls.Add(label6);
-            groupBox2.Controls.Add(label5);
-            groupBox2.Controls.Add(maxDate);
-            groupBox2.Controls.Add(minDate);
-            groupBox2.Location = new Point(12, 12);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(319, 156);
-            groupBox2.TabIndex = 7;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Bitcoin high/low value";
+            gbBitcoinValue.Controls.Add(maxValue);
+            gbBitcoinValue.Controls.Add(minValue);
+            gbBitcoinValue.Controls.Add(label6);
+            gbBitcoinValue.Controls.Add(label5);
+            gbBitcoinValue.Controls.Add(maxDate);
+            gbBitcoinValue.Controls.Add(minDate);
+            gbBitcoinValue.Location = new Point(12, 12);
+            gbBitcoinValue.Name = "gbBitcoinValue";
+            gbBitcoinValue.Size = new Size(319, 157);
+            gbBitcoinValue.TabIndex = 7;
+            gbBitcoinValue.TabStop = false;
+            gbBitcoinValue.Text = "Bitcoin high/low value";
             // 
             // maxValue
             // 
             maxValue.AutoSize = true;
-            maxValue.Location = new Point(182, 95);
+            maxValue.Location = new Point(182, 106);
             maxValue.Name = "maxValue";
             maxValue.Size = new Size(77, 20);
             maxValue.TabIndex = 5;
-            maxValue.Text = "Value Max";
+            maxValue.Text = "Value max";
             // 
             // minValue
             // 
             minValue.AutoSize = true;
-            minValue.Location = new Point(38, 95);
+            minValue.Location = new Point(38, 106);
             minValue.Name = "minValue";
             minValue.Size = new Size(74, 20);
             minValue.TabIndex = 4;
-            minValue.Text = "Value Min";
+            minValue.Text = "Value min";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(182, 43);
+            label6.Location = new Point(182, 32);
             label6.Name = "label6";
             label6.Size = new Size(60, 20);
             label6.TabIndex = 3;
@@ -171,7 +178,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(38, 43);
+            label5.Location = new Point(38, 32);
             label5.Name = "label5";
             label5.Size = new Size(55, 20);
             label5.TabIndex = 2;
@@ -180,33 +187,93 @@
             // maxDate
             // 
             maxDate.AutoSize = true;
-            maxDate.Location = new Point(182, 75);
+            maxDate.Location = new Point(182, 77);
             maxDate.Name = "maxDate";
             maxDate.Size = new Size(73, 20);
             maxDate.TabIndex = 1;
-            maxDate.Text = "Date Max";
+            maxDate.Text = "Date max";
             // 
             // minDate
             // 
             minDate.AutoSize = true;
-            minDate.Location = new Point(38, 75);
+            minDate.Location = new Point(38, 77);
             minDate.Name = "minDate";
             minDate.Size = new Size(70, 20);
             minDate.TabIndex = 0;
-            minDate.Text = "Date Min";
+            minDate.Text = "Date min";
             // 
-            // groupBox3
+            // gbTradingVolume
             // 
-            groupBox3.Location = new Point(12, 174);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(319, 134);
-            groupBox3.TabIndex = 8;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Bitcoin trading value";
+            gbTradingVolume.Controls.Add(maxVolumeDateLbl);
+            gbTradingVolume.Controls.Add(minVolumeDateLbl);
+            gbTradingVolume.Controls.Add(maxVolumelbl);
+            gbTradingVolume.Controls.Add(minVolumeLbl);
+            gbTradingVolume.Controls.Add(label4);
+            gbTradingVolume.Controls.Add(label3);
+            gbTradingVolume.Location = new Point(12, 175);
+            gbTradingVolume.Name = "gbTradingVolume";
+            gbTradingVolume.Size = new Size(319, 157);
+            gbTradingVolume.TabIndex = 8;
+            gbTradingVolume.TabStop = false;
+            gbTradingVolume.Text = "Bitcoin trading volume";
+            // 
+            // maxVolumeDateLbl
+            // 
+            maxVolumeDateLbl.AutoSize = true;
+            maxVolumeDateLbl.Location = new Point(182, 77);
+            maxVolumeDateLbl.Name = "maxVolumeDateLbl";
+            maxVolumeDateLbl.Size = new Size(73, 20);
+            maxVolumeDateLbl.TabIndex = 5;
+            maxVolumeDateLbl.Text = "Date max";
+            // 
+            // minVolumeDateLbl
+            // 
+            minVolumeDateLbl.AutoSize = true;
+            minVolumeDateLbl.Location = new Point(38, 77);
+            minVolumeDateLbl.Name = "minVolumeDateLbl";
+            minVolumeDateLbl.Size = new Size(70, 20);
+            minVolumeDateLbl.TabIndex = 4;
+            minVolumeDateLbl.Text = "Date min";
+            // 
+            // maxVolumelbl
+            // 
+            maxVolumelbl.AutoSize = true;
+            maxVolumelbl.Location = new Point(182, 106);
+            maxVolumelbl.Name = "maxVolumelbl";
+            maxVolumelbl.Size = new Size(90, 20);
+            maxVolumelbl.TabIndex = 3;
+            maxVolumelbl.Text = "Max volume";
+            // 
+            // minVolumeLbl
+            // 
+            minVolumeLbl.AutoSize = true;
+            minVolumeLbl.Location = new Point(38, 106);
+            minVolumeLbl.Name = "minVolumeLbl";
+            minVolumeLbl.Size = new Size(87, 20);
+            minVolumeLbl.TabIndex = 2;
+            minVolumeLbl.Text = "Min volume";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(182, 32);
+            label4.Name = "label4";
+            label4.Size = new Size(60, 20);
+            label4.TabIndex = 1;
+            label4.Text = "Highest";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(38, 32);
+            label3.Name = "label3";
+            label3.Size = new Size(55, 20);
+            label3.TabIndex = 0;
+            label3.Text = "Lowest";
             // 
             // groupBox4
             // 
-            groupBox4.Location = new Point(485, 206);
+            groupBox4.Location = new Point(337, 192);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(250, 125);
             groupBox4.TabIndex = 9;
@@ -215,7 +282,7 @@
             // 
             // groupBox5
             // 
-            groupBox5.Location = new Point(741, 206);
+            groupBox5.Location = new Point(593, 192);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new Size(250, 125);
             groupBox5.TabIndex = 10;
@@ -229,19 +296,21 @@
             ClientSize = new Size(1158, 651);
             Controls.Add(groupBox5);
             Controls.Add(groupBox4);
-            Controls.Add(groupBox3);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
+            Controls.Add(gbTradingVolume);
+            Controls.Add(gbBitcoinValue);
+            Controls.Add(gbDateSearch);
             Controls.Add(dataGVBitcoin);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "MainForm";
             Text = "MainForm";
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGVBitcoin).EndInit();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
+            gbDateSearch.ResumeLayout(false);
+            gbDateSearch.PerformLayout();
+            gbBitcoinValue.ResumeLayout(false);
+            gbBitcoinValue.PerformLayout();
+            gbTradingVolume.ResumeLayout(false);
+            gbTradingVolume.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -253,16 +322,22 @@
         private Label label2;
         private Button btnFindFromDates;
         private DataGridView dataGVBitcoin;
-        private GroupBox groupBox1;
-        private GroupBox groupBox2;
+        private GroupBox gbDateSearch;
+        private GroupBox gbBitcoinValue;
         private Label maxValue;
         private Label minValue;
         private Label label6;
         private Label label5;
         private Label maxDate;
         private Label minDate;
-        private GroupBox groupBox3;
+        private GroupBox gbTradingVolume;
         private GroupBox groupBox4;
         private GroupBox groupBox5;
+        private Label maxVolumelbl;
+        private Label minVolumeLbl;
+        private Label label4;
+        private Label label3;
+        private Label maxVolumeDateLbl;
+        private Label minVolumeDateLbl;
     }
 }
