@@ -50,11 +50,19 @@
             label4 = new Label();
             label3 = new Label();
             groupBox4 = new GroupBox();
+            bullEndLbl = new Label();
+            bullStartLbl = new Label();
+            bullLbl = new Label();
+            bearLbl = new Label();
+            bearEndLbl = new Label();
+            bearStartLbl = new Label();
             groupBox5 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)dataGVBitcoin).BeginInit();
             gbDateSearch.SuspendLayout();
             gbBitcoinValue.SuspendLayout();
             gbTradingVolume.SuspendLayout();
+            groupBox4.SuspendLayout();
+            groupBox5.SuspendLayout();
             SuspendLayout();
             // 
             // dateStart
@@ -143,15 +151,15 @@
             gbBitcoinValue.Controls.Add(minDate);
             gbBitcoinValue.Location = new Point(12, 12);
             gbBitcoinValue.Name = "gbBitcoinValue";
-            gbBitcoinValue.Size = new Size(319, 157);
+            gbBitcoinValue.Size = new Size(365, 157);
             gbBitcoinValue.TabIndex = 7;
             gbBitcoinValue.TabStop = false;
-            gbBitcoinValue.Text = "Bitcoin high/low value";
+            gbBitcoinValue.Text = "Value";
             // 
             // maxValue
             // 
             maxValue.AutoSize = true;
-            maxValue.Location = new Point(182, 106);
+            maxValue.Location = new Point(213, 106);
             maxValue.Name = "maxValue";
             maxValue.Size = new Size(77, 20);
             maxValue.TabIndex = 5;
@@ -160,7 +168,7 @@
             // minValue
             // 
             minValue.AutoSize = true;
-            minValue.Location = new Point(38, 106);
+            minValue.Location = new Point(70, 106);
             minValue.Name = "minValue";
             minValue.Size = new Size(74, 20);
             minValue.TabIndex = 4;
@@ -187,7 +195,7 @@
             // maxDate
             // 
             maxDate.AutoSize = true;
-            maxDate.Location = new Point(182, 77);
+            maxDate.Location = new Point(213, 77);
             maxDate.Name = "maxDate";
             maxDate.Size = new Size(73, 20);
             maxDate.TabIndex = 1;
@@ -196,7 +204,7 @@
             // minDate
             // 
             minDate.AutoSize = true;
-            minDate.Location = new Point(38, 77);
+            minDate.Location = new Point(70, 77);
             minDate.Name = "minDate";
             minDate.Size = new Size(70, 20);
             minDate.TabIndex = 0;
@@ -212,15 +220,15 @@
             gbTradingVolume.Controls.Add(label3);
             gbTradingVolume.Location = new Point(12, 175);
             gbTradingVolume.Name = "gbTradingVolume";
-            gbTradingVolume.Size = new Size(319, 157);
+            gbTradingVolume.Size = new Size(365, 157);
             gbTradingVolume.TabIndex = 8;
             gbTradingVolume.TabStop = false;
-            gbTradingVolume.Text = "Bitcoin trading volume";
+            gbTradingVolume.Text = "Trading volume";
             // 
             // maxVolumeDateLbl
             // 
             maxVolumeDateLbl.AutoSize = true;
-            maxVolumeDateLbl.Location = new Point(182, 77);
+            maxVolumeDateLbl.Location = new Point(213, 77);
             maxVolumeDateLbl.Name = "maxVolumeDateLbl";
             maxVolumeDateLbl.Size = new Size(73, 20);
             maxVolumeDateLbl.TabIndex = 5;
@@ -229,7 +237,7 @@
             // minVolumeDateLbl
             // 
             minVolumeDateLbl.AutoSize = true;
-            minVolumeDateLbl.Location = new Point(38, 77);
+            minVolumeDateLbl.Location = new Point(70, 77);
             minVolumeDateLbl.Name = "minVolumeDateLbl";
             minVolumeDateLbl.Size = new Size(70, 20);
             minVolumeDateLbl.TabIndex = 4;
@@ -238,7 +246,7 @@
             // maxVolumelbl
             // 
             maxVolumelbl.AutoSize = true;
-            maxVolumelbl.Location = new Point(182, 106);
+            maxVolumelbl.Location = new Point(213, 106);
             maxVolumelbl.Name = "maxVolumelbl";
             maxVolumelbl.Size = new Size(90, 20);
             maxVolumelbl.TabIndex = 3;
@@ -247,7 +255,7 @@
             // minVolumeLbl
             // 
             minVolumeLbl.AutoSize = true;
-            minVolumeLbl.Location = new Point(38, 106);
+            minVolumeLbl.Location = new Point(70, 106);
             minVolumeLbl.Name = "minVolumeLbl";
             minVolumeLbl.Size = new Size(87, 20);
             minVolumeLbl.TabIndex = 2;
@@ -256,7 +264,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(182, 32);
+            label4.Location = new Point(181, 32);
             label4.Name = "label4";
             label4.Size = new Size(60, 20);
             label4.TabIndex = 1;
@@ -273,21 +281,81 @@
             // 
             // groupBox4
             // 
-            groupBox4.Location = new Point(337, 192);
+            groupBox4.Controls.Add(bullEndLbl);
+            groupBox4.Controls.Add(bullStartLbl);
+            groupBox4.Controls.Add(bullLbl);
+            groupBox4.Location = new Point(453, 175);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(250, 125);
+            groupBox4.Size = new Size(328, 157);
             groupBox4.TabIndex = 9;
             groupBox4.TabStop = false;
-            groupBox4.Text = "Bear";
+            groupBox4.Text = "Bull";
+            // 
+            // bullEndLbl
+            // 
+            bullEndLbl.AutoSize = true;
+            bullEndLbl.Location = new Point(49, 106);
+            bullEndLbl.Name = "bullEndLbl";
+            bullEndLbl.Size = new Size(68, 20);
+            bullEndLbl.TabIndex = 2;
+            bullEndLbl.Text = "End date";
+            // 
+            // bullStartLbl
+            // 
+            bullStartLbl.AutoSize = true;
+            bullStartLbl.Location = new Point(49, 77);
+            bullStartLbl.Name = "bullStartLbl";
+            bullStartLbl.Size = new Size(74, 20);
+            bullStartLbl.TabIndex = 1;
+            bullStartLbl.Text = "Start date";
+            // 
+            // bullLbl
+            // 
+            bullLbl.AutoSize = true;
+            bullLbl.Location = new Point(49, 48);
+            bullLbl.Name = "bullLbl";
+            bullLbl.Size = new Size(75, 20);
+            bullLbl.TabIndex = 0;
+            bullLbl.Text = "Bull count";
+            // 
+            // bearLbl
+            // 
+            bearLbl.AutoSize = true;
+            bearLbl.Location = new Point(55, 48);
+            bearLbl.Name = "bearLbl";
+            bearLbl.Size = new Size(80, 20);
+            bearLbl.TabIndex = 2;
+            bearLbl.Text = "Bear count";
+            // 
+            // bearEndLbl
+            // 
+            bearEndLbl.AutoSize = true;
+            bearEndLbl.Location = new Point(55, 106);
+            bearEndLbl.Name = "bearEndLbl";
+            bearEndLbl.Size = new Size(68, 20);
+            bearEndLbl.TabIndex = 1;
+            bearEndLbl.Text = "End date";
+            // 
+            // bearStartLbl
+            // 
+            bearStartLbl.AutoSize = true;
+            bearStartLbl.Location = new Point(55, 77);
+            bearStartLbl.Name = "bearStartLbl";
+            bearStartLbl.Size = new Size(74, 20);
+            bearStartLbl.TabIndex = 0;
+            bearStartLbl.Text = "Start date";
             // 
             // groupBox5
             // 
-            groupBox5.Location = new Point(593, 192);
+            groupBox5.Controls.Add(bearLbl);
+            groupBox5.Controls.Add(bearEndLbl);
+            groupBox5.Controls.Add(bearStartLbl);
+            groupBox5.Location = new Point(788, 175);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(250, 125);
+            groupBox5.Size = new Size(328, 157);
             groupBox5.TabIndex = 10;
             groupBox5.TabStop = false;
-            groupBox5.Text = "Bull";
+            groupBox5.Text = "Bear";
             // 
             // MainForm
             // 
@@ -302,7 +370,7 @@
             Controls.Add(dataGVBitcoin);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "MainForm";
-            Text = "MainForm";
+            Text = "Bitcoin market analyzer";
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGVBitcoin).EndInit();
             gbDateSearch.ResumeLayout(false);
@@ -311,6 +379,10 @@
             gbBitcoinValue.PerformLayout();
             gbTradingVolume.ResumeLayout(false);
             gbTradingVolume.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -339,5 +411,11 @@
         private Label label3;
         private Label maxVolumeDateLbl;
         private Label minVolumeDateLbl;
+        private Label bearStartLbl;
+        private Label bullLbl;
+        private Label bearLbl;
+        private Label bearEndLbl;
+        private Label bullEndLbl;
+        private Label bullStartLbl;
     }
 }

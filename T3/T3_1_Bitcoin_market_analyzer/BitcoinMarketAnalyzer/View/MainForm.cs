@@ -10,8 +10,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using BitcoinMarketAnalyzer.Model;
 using Newtonsoft.Json.Linq;
+using BitcoinMarketAnalyzer.Control;
 
 
 
@@ -40,7 +40,7 @@ namespace BitcoinMarketAnalyzer
 
             // Configure date times to not go beyond one year as guided in Coingecko.
 
-            dateStart.MaxDate = DateTime.Now.AddDays(-1);
+            dateStart.MaxDate = DateTime.Now;
             dateEnd.MaxDate = DateTime.Now;
 
             dateStart.MinDate = DateTime.Now.AddYears(-1);
@@ -52,8 +52,8 @@ namespace BitcoinMarketAnalyzer
             startDate = dateStart.Value.Date;
             endDate = dateEnd.Value.Date;
 
-            string startDateString = startDate.ToString("yyyy-MM-dd");
-            string endDateString = endDate.ToString("yyyy-MM-dd");
+            string startDateString = startDate.ToString("d");
+            string endDateString = endDate.ToString("d");
 
 
 
@@ -67,6 +67,12 @@ namespace BitcoinMarketAnalyzer
 
             var (maxVolumeDate, minVolumeDate) = JsonDataManagement.GetMaxAndMinVolumeDates(startDateString, endDateString);
 
+
+            var (longestBearStreakString, longestBearStreakStartDateString, longestBearStreakEndDateString) = JsonDataManagement.BullishMarket(startDateString, endDateString);
+
+            var (longestBullStreakString, longestBullStreakStartDateString, longestBullStreakEndDateString) = JsonDataManagement.BearishMarket(startDateString, endDateString);
+
+
             // Place bitcoin info into labels in mainform.
 
             dataGVBitcoin.DataSource = JsonDataManagement.GetBitcoins(startDateString, endDateString);
@@ -77,12 +83,22 @@ namespace BitcoinMarketAnalyzer
             maxDate.Text = maxValueDate.ToString();
             minDate.Text = minValueDate.ToString();
 
-            maxVolumelbl.Text = Math.Round(maxVolume.Total_volume, 0).ToString();
-            minVolumeLbl.Text = Math.Round(minVolume.Total_volume, 0).ToString();
+            maxVolumelbl.Text = Math.Round(maxVolume.Total_volume, 0).ToString() + " €";
+            minVolumeLbl.Text = Math.Round(minVolume.Total_volume, 0).ToString() + " €";
 
             maxVolumeDateLbl.Text = maxVolumeDate.ToString();
             minVolumeDateLbl.Text = minVolumeDate.ToString();
-            
+
+
+            bullLbl.Text = "Longest bullish trend was " + longestBullStreakString + " days";
+            bullStartLbl.Text = "From " + longestBullStreakStartDateString;
+            bullEndLbl.Text = "To " + longestBullStreakEndDateString;
+
+
+            bearLbl.Text = "Longest bearish trend was " + longestBearStreakString + " days";
+            bearStartLbl.Text = "From " + longestBearStreakStartDateString;
+            bearEndLbl.Text = "To " + longestBearStreakEndDateString;
+
         }
 
         private void dateStart_ValueChanged(object sender, EventArgs e)
@@ -112,8 +128,8 @@ namespace BitcoinMarketAnalyzer
             }
             else
             {
-                string startDateString = startDate.ToString("yyyy-MM-dd");
-                string endDateString = endDate.ToString("yyyy-MM-dd");
+                string startDateString = startDate.ToString("d");
+                string endDateString = endDate.ToString("d");
 
                 var bitcoinData = JsonDataManagement.GetBitcoins(startDateString, endDateString);
 
@@ -129,6 +145,11 @@ namespace BitcoinMarketAnalyzer
 
                     var (maxVolumeDate, minVolumeDate) = JsonDataManagement.GetMaxAndMinVolumeDates(startDateString, endDateString);
 
+                    var (longestBearStreakString, longestBearStreakStartDateString, longestBearStreakEndDateString) = JsonDataManagement.BullishMarket(startDateString, endDateString);
+
+                    var (longestBullStreakString, longestBullStreakStartDateString, longestBullStreakEndDateString) = JsonDataManagement.BearishMarket(startDateString, endDateString);
+
+
 
                     if (maxBitcoin != null && minBitcoin != null)
                     {
@@ -138,11 +159,21 @@ namespace BitcoinMarketAnalyzer
                         maxDate.Text = maxValueDate.ToString();
                         minDate.Text = minValueDate.ToString();
 
-                        maxVolumelbl.Text = Math.Round(maxVolume.Total_volume, 0).ToString();
-                        minVolumeLbl.Text = Math.Round(minVolume.Total_volume, 0).ToString();
+                        maxVolumelbl.Text = Math.Round(maxVolume.Total_volume, 0).ToString() + " €";
+                        minVolumeLbl.Text = Math.Round(minVolume.Total_volume, 0).ToString() + " €";
 
                         maxVolumeDateLbl.Text = maxVolumeDate.ToString();
                         minVolumeDateLbl.Text = minVolumeDate.ToString();
+
+
+                        bullLbl.Text = "Longest bullish trend was " + longestBullStreakString + " days";
+                        bullStartLbl.Text = "From " + longestBullStreakStartDateString;
+                        bullEndLbl.Text = "To " + longestBullStreakEndDateString;
+
+
+                        bearLbl.Text = "Longest bearish trend was " + longestBearStreakString + " days";
+                        bearStartLbl.Text = "From " + longestBearStreakStartDateString;
+                        bearEndLbl.Text = "To " + longestBearStreakEndDateString;
                     }
                     else
                     {
