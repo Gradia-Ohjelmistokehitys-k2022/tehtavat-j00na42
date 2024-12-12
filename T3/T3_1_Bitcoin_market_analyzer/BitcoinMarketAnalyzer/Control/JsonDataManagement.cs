@@ -178,12 +178,12 @@ namespace BitcoinMarketAnalyzer.Control
 
             List<Bitcoin> bitcoins = GetBitcoins(startDate, endDate);
 
-            var dailyAverages = bitcoins
+            var dailyMax = bitcoins
                 .GroupBy(b => b.DateTime.Date)
                 .Select(g => new
                 {
                     Date = g.Key,
-                    AveragePrice = g.Average(b => b.Price)
+                    MaxPrice = g.Max(b => b.Price)
                 })
                 .OrderBy(d => d.Date)
                 .ToList();
@@ -194,13 +194,13 @@ namespace BitcoinMarketAnalyzer.Control
             DateTime longestStreakEndDate = DateTime.MinValue;
             DateTime currentStreakStartDate = DateTime.MinValue;
 
-            for (int i = 1; i < dailyAverages.Count; i++)
+            for (int i = 1; i < dailyMax.Count; i++)
             {
-                if (dailyAverages[i].AveragePrice > dailyAverages[i - 1].AveragePrice)
+                if (dailyMax[i].MaxPrice > dailyMax[i - 1].MaxPrice)
                 {
                     if (currentStreak == 0)
                     {
-                        currentStreakStartDate = dailyAverages[i - 1].Date;
+                        currentStreakStartDate = dailyMax[i - 1].Date;
                     }
 
                     currentStreak++;
@@ -208,7 +208,7 @@ namespace BitcoinMarketAnalyzer.Control
                     {
                         longestStreak = currentStreak;
                         longestStreakStartDate = currentStreakStartDate;
-                        longestStreakEndDate = dailyAverages[i].Date;
+                        longestStreakEndDate = dailyMax[i].Date;
                     }
                 }
                 else
@@ -249,12 +249,12 @@ namespace BitcoinMarketAnalyzer.Control
         {
             List<Bitcoin> bitcoins = GetBitcoins(startDate, endDate);
 
-            var dailyAverages = bitcoins
+            var dailyMax = bitcoins
                 .GroupBy(b => b.DateTime.Date)
                 .Select(g => new
                 {
                     Date = g.Key,
-                    AveragePrice = g.Average(b => b.Price)
+                    MaxPrice = g.Max(b => b.Price)
                 })
                 .OrderBy(d => d.Date)
                 .ToList();
@@ -265,13 +265,13 @@ namespace BitcoinMarketAnalyzer.Control
             DateTime longestStreakEndDate = DateTime.MinValue;
             DateTime currentStreakStartDate = DateTime.MinValue;
 
-            for (int i = 1; i < dailyAverages.Count; i++)
+            for (int i = 1; i < dailyMax.Count; i++)
             {
-                if (dailyAverages[i].AveragePrice < dailyAverages[i - 1].AveragePrice)
+                if (dailyMax[i].MaxPrice < dailyMax[i - 1].MaxPrice)
                 {
                     if (currentStreak == 0)
                     {
-                        currentStreakStartDate = dailyAverages[i - 1].Date;
+                        currentStreakStartDate = dailyMax[i - 1].Date;
                     }
 
                     currentStreak++;
@@ -279,7 +279,7 @@ namespace BitcoinMarketAnalyzer.Control
                     {
                         longestStreak = currentStreak;
                         longestStreakStartDate = currentStreakStartDate;
-                        longestStreakEndDate = dailyAverages[i].Date;
+                        longestStreakEndDate = dailyMax[i].Date;
                     }
                 }
                 else
@@ -310,6 +310,75 @@ namespace BitcoinMarketAnalyzer.Control
 
 
 
+
+
+
+
+        public static string BestTimeToBuy(string startDate, string endDate)
+        {
+            List<Bitcoin> bitcoins = GetBitcoins(startDate, endDate);
+
+            var dailyAverage = bitcoins
+                .GroupBy(b => b.DateTime.Date)
+                .Select(g => new
+                {
+                    Date = g.Key,
+                    AvgPrice = g.Average(b => b.Price)
+                })
+                .OrderBy(d => d.Date)
+                .ToList();
+
+            var bestDay = dailyAverage
+                .OrderBy(d => d.AvgPrice)
+                .FirstOrDefault();
+
+
+            if (bestDay != null)
+            {
+                
+                string bestDayToBuy = bestDay.Date.ToShortDateString();
+                return bestDayToBuy;
+            }
+            else
+            {
+                string bestDayToBuy = " - ";
+                return bestDayToBuy;
+            }
+            
+        }
+
+        public static string BestTimeToSell(string startDate, string endDate)
+        {
+            List<Bitcoin> bitcoins = GetBitcoins(startDate, endDate);
+
+            var dailyAverage = bitcoins
+                .GroupBy(b => b.DateTime.Date)
+                .Select(g => new
+                {
+                    Date = g.Key,
+                    AvgPrice = g.Average(b => b.Price)
+                })
+                .OrderBy(d => d.Date)
+                .ToList();
+
+            var bestDay = dailyAverage
+                .OrderByDescending(d => d.AvgPrice)
+                .FirstOrDefault();
+
+
+            if (bestDay != null)
+            {
+
+                string bestDayToSell = bestDay.Date.ToShortDateString();
+                return bestDayToSell;
+            }
+            else
+            {
+                string bestDayToSell = " - ";
+                return bestDayToSell;
+            }
+
+        }
 
         //
 

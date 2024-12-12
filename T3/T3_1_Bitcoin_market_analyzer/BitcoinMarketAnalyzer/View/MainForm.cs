@@ -33,10 +33,6 @@ namespace BitcoinMarketAnalyzer
         {
             //
 
-            dataGVBitcoin.DataBindingComplete += (o, _) =>
-            {
-                this.dataGVBitcoin.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            };
 
             // Configure date times to not go beyond one year as guided in Coingecko.
 
@@ -68,14 +64,13 @@ namespace BitcoinMarketAnalyzer
             var (maxVolumeDate, minVolumeDate) = JsonDataManagement.GetMaxAndMinVolumeDates(startDateString, endDateString);
 
 
-            var (longestBearStreakString, longestBearStreakStartDateString, longestBearStreakEndDateString) = JsonDataManagement.BullishMarket(startDateString, endDateString);
+            var (longestBullStreakString, longestBullStreakStartDateString, longestBullStreakEndDateString) = JsonDataManagement.BullishMarket(startDateString, endDateString);
 
-            var (longestBullStreakString, longestBullStreakStartDateString, longestBullStreakEndDateString) = JsonDataManagement.BearishMarket(startDateString, endDateString);
+            var (longestBearStreakString, longestBearStreakStartDateString, longestBearStreakEndDateString) = JsonDataManagement.BearishMarket(startDateString, endDateString);
 
 
             // Place bitcoin info into labels in mainform.
 
-            dataGVBitcoin.DataSource = JsonDataManagement.GetBitcoins(startDateString, endDateString);
 
             maxValue.Text = Math.Round(maxPriceBitcoin.Price, 0).ToString() + " €";
             minValue.Text = Math.Round(minPriceBitcoin.Price, 0).ToString() + " €";
@@ -89,6 +84,10 @@ namespace BitcoinMarketAnalyzer
             maxVolumeDateLbl.Text = maxVolumeDate.ToString();
             minVolumeDateLbl.Text = minVolumeDate.ToString();
 
+            dayToBuyLbl.Text = "Best day to buy is " + JsonDataManagement.BestTimeToBuy(startDateString, endDateString);
+
+            dayToSellLbl.Text = "Best day to sell is " + JsonDataManagement.BestTimeToSell(startDateString, endDateString);
+
 
             bullLbl.Text = "Longest bullish trend was " + longestBullStreakString + " days";
             bullStartLbl.Text = "From " + longestBullStreakStartDateString;
@@ -98,6 +97,9 @@ namespace BitcoinMarketAnalyzer
             bearLbl.Text = "Longest bearish trend was " + longestBearStreakString + " days";
             bearStartLbl.Text = "From " + longestBearStreakStartDateString;
             bearEndLbl.Text = "To " + longestBearStreakEndDateString;
+
+
+            
 
         }
 
@@ -135,8 +137,6 @@ namespace BitcoinMarketAnalyzer
 
                 if (bitcoinData != null)
                 {
-                    dataGVBitcoin.DataSource = bitcoinData;
-
                     var (maxBitcoin, minBitcoin) = JsonDataManagement.GetMaxAndMinBitcoins(startDateString, endDateString);
 
                     var (maxValueDate, minValueDate) = JsonDataManagement.GetMaxAndMinDates(startDateString, endDateString);
@@ -145,9 +145,9 @@ namespace BitcoinMarketAnalyzer
 
                     var (maxVolumeDate, minVolumeDate) = JsonDataManagement.GetMaxAndMinVolumeDates(startDateString, endDateString);
 
-                    var (longestBearStreakString, longestBearStreakStartDateString, longestBearStreakEndDateString) = JsonDataManagement.BullishMarket(startDateString, endDateString);
+                    var (longestBullStreakString, longestBullStreakStartDateString, longestBullStreakEndDateString) = JsonDataManagement.BullishMarket(startDateString, endDateString);
 
-                    var (longestBullStreakString, longestBullStreakStartDateString, longestBullStreakEndDateString) = JsonDataManagement.BearishMarket(startDateString, endDateString);
+                    var (longestBearStreakString, longestBearStreakStartDateString, longestBearStreakEndDateString) = JsonDataManagement.BearishMarket(startDateString, endDateString);
 
 
 
@@ -165,6 +165,9 @@ namespace BitcoinMarketAnalyzer
                         maxVolumeDateLbl.Text = maxVolumeDate.ToString();
                         minVolumeDateLbl.Text = minVolumeDate.ToString();
 
+                        dayToBuyLbl.Text = "Best day to buy is " + JsonDataManagement.BestTimeToBuy(startDateString, endDateString);
+
+                        dayToSellLbl.Text = "Best day to sell is " + JsonDataManagement.BestTimeToSell(startDateString, endDateString);
 
                         bullLbl.Text = "Longest bullish trend was " + longestBullStreakString + " days";
                         bullStartLbl.Text = "From " + longestBullStreakStartDateString;

@@ -33,7 +33,6 @@
             label1 = new Label();
             label2 = new Label();
             btnFindFromDates = new Button();
-            dataGVBitcoin = new DataGridView();
             gbDateSearch = new GroupBox();
             gbBitcoinValue = new GroupBox();
             maxValue = new Label();
@@ -57,12 +56,15 @@
             bearEndLbl = new Label();
             bearStartLbl = new Label();
             groupBox5 = new GroupBox();
-            ((System.ComponentModel.ISupportInitialize)dataGVBitcoin).BeginInit();
+            groupBox1 = new GroupBox();
+            dayToSellLbl = new Label();
+            dayToBuyLbl = new Label();
             gbDateSearch.SuspendLayout();
             gbBitcoinValue.SuspendLayout();
             gbTradingVolume.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox5.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // dateStart
@@ -113,20 +115,6 @@
             btnFindFromDates.UseVisualStyleBackColor = true;
             btnFindFromDates.Click += btnFindFromDates_Click;
             // 
-            // dataGVBitcoin
-            // 
-            dataGVBitcoin.AllowUserToAddRows = false;
-            dataGVBitcoin.AllowUserToDeleteRows = false;
-            dataGVBitcoin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGVBitcoin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGVBitcoin.Location = new Point(12, 360);
-            dataGVBitcoin.Name = "dataGVBitcoin";
-            dataGVBitcoin.ReadOnly = true;
-            dataGVBitcoin.RowHeadersWidth = 51;
-            dataGVBitcoin.Size = new Size(1134, 279);
-            dataGVBitcoin.TabIndex = 5;
-            dataGVBitcoin.CellContentClick += dataGVBitcoin_CellContentClick;
-            // 
             // gbDateSearch
             // 
             gbDateSearch.Controls.Add(label1);
@@ -134,9 +122,9 @@
             gbDateSearch.Controls.Add(btnFindFromDates);
             gbDateSearch.Controls.Add(dateEnd);
             gbDateSearch.Controls.Add(label2);
-            gbDateSearch.Location = new Point(867, 12);
+            gbDateSearch.Location = new Point(887, 12);
             gbDateSearch.Name = "gbDateSearch";
-            gbDateSearch.Size = new Size(279, 157);
+            gbDateSearch.Size = new Size(259, 157);
             gbDateSearch.TabIndex = 6;
             gbDateSearch.TabStop = false;
             gbDateSearch.Text = "Dates";
@@ -218,7 +206,7 @@
             gbTradingVolume.Controls.Add(minVolumeLbl);
             gbTradingVolume.Controls.Add(label4);
             gbTradingVolume.Controls.Add(label3);
-            gbTradingVolume.Location = new Point(12, 175);
+            gbTradingVolume.Location = new Point(383, 12);
             gbTradingVolume.Name = "gbTradingVolume";
             gbTradingVolume.Size = new Size(365, 157);
             gbTradingVolume.TabIndex = 8;
@@ -284,7 +272,7 @@
             groupBox4.Controls.Add(bullEndLbl);
             groupBox4.Controls.Add(bullStartLbl);
             groupBox4.Controls.Add(bullLbl);
-            groupBox4.Location = new Point(453, 175);
+            groupBox4.Location = new Point(12, 175);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(328, 157);
             groupBox4.TabIndex = 9;
@@ -350,29 +338,57 @@
             groupBox5.Controls.Add(bearLbl);
             groupBox5.Controls.Add(bearEndLbl);
             groupBox5.Controls.Add(bearStartLbl);
-            groupBox5.Location = new Point(788, 175);
+            groupBox5.Location = new Point(346, 175);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new Size(328, 157);
             groupBox5.TabIndex = 10;
             groupBox5.TabStop = false;
             groupBox5.Text = "Bear";
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(dayToSellLbl);
+            groupBox1.Controls.Add(dayToBuyLbl);
+            groupBox1.Location = new Point(680, 175);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(466, 157);
+            groupBox1.TabIndex = 11;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Best days to buy and sell";
+            // 
+            // dayToSellLbl
+            // 
+            dayToSellLbl.AutoSize = true;
+            dayToSellLbl.Location = new Point(47, 77);
+            dayToSellLbl.Name = "dayToSellLbl";
+            dayToSellLbl.Size = new Size(109, 20);
+            dayToSellLbl.TabIndex = 1;
+            dayToSellLbl.Text = "Best day to sell";
+            // 
+            // dayToBuyLbl
+            // 
+            dayToBuyLbl.AutoSize = true;
+            dayToBuyLbl.Location = new Point(47, 48);
+            dayToBuyLbl.Name = "dayToBuyLbl";
+            dayToBuyLbl.Size = new Size(111, 20);
+            dayToBuyLbl.TabIndex = 0;
+            dayToBuyLbl.Text = "Best day to buy";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1158, 651);
+            Controls.Add(groupBox1);
             Controls.Add(groupBox5);
             Controls.Add(groupBox4);
             Controls.Add(gbTradingVolume);
             Controls.Add(gbBitcoinValue);
             Controls.Add(gbDateSearch);
-            Controls.Add(dataGVBitcoin);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "MainForm";
             Text = "Bitcoin market analyzer";
             Load += MainForm_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGVBitcoin).EndInit();
             gbDateSearch.ResumeLayout(false);
             gbDateSearch.PerformLayout();
             gbBitcoinValue.ResumeLayout(false);
@@ -383,6 +399,8 @@
             groupBox4.PerformLayout();
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -393,7 +411,6 @@
         private Label label1;
         private Label label2;
         private Button btnFindFromDates;
-        private DataGridView dataGVBitcoin;
         private GroupBox gbDateSearch;
         private GroupBox gbBitcoinValue;
         private Label maxValue;
@@ -417,5 +434,8 @@
         private Label bearEndLbl;
         private Label bullEndLbl;
         private Label bullStartLbl;
+        private GroupBox groupBox1;
+        private Label dayToSellLbl;
+        private Label dayToBuyLbl;
     }
 }
