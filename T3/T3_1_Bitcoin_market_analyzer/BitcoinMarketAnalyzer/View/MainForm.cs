@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using BitcoinMarketAnalyzer.Control;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 
@@ -22,6 +23,9 @@ namespace BitcoinMarketAnalyzer
 
         public DateTime startDate;
         public DateTime endDate;
+
+        List<DateTime> xValues = new List<DateTime>();
+        List<double> yValues = new List<double>();
 
         public MainForm()
         {
@@ -51,6 +55,8 @@ namespace BitcoinMarketAnalyzer
             string startDateString = startDate.ToString("d");
             string endDateString = endDate.ToString("d");
 
+            var bitcoinData = JsonDataManagement.GetBitcoins(startDateString, endDateString);
+
 
 
             // Get functions from JsonDataManagement.
@@ -67,6 +73,12 @@ namespace BitcoinMarketAnalyzer
             var (longestBullStreakString, longestBullStreakStartDateString, longestBullStreakEndDateString) = JsonDataManagement.BullishMarket(startDateString, endDateString);
 
             var (longestBearStreakString, longestBearStreakStartDateString, longestBearStreakEndDateString) = JsonDataManagement.BearishMarket(startDateString, endDateString);
+
+            var dates = bitcoinData.Select(data => data.DateTime).ToList();
+            var prices = bitcoinData.Select(data => data.Price).ToList();
+
+            UpdateChart(dates, prices);
+
 
 
             // Place bitcoin info into labels in mainform.
@@ -135,6 +147,8 @@ namespace BitcoinMarketAnalyzer
 
                 var bitcoinData = JsonDataManagement.GetBitcoins(startDateString, endDateString);
 
+
+
                 if (bitcoinData != null)
                 {
                     var (maxBitcoin, minBitcoin) = JsonDataManagement.GetMaxAndMinBitcoins(startDateString, endDateString);
@@ -148,6 +162,12 @@ namespace BitcoinMarketAnalyzer
                     var (longestBullStreakString, longestBullStreakStartDateString, longestBullStreakEndDateString) = JsonDataManagement.BullishMarket(startDateString, endDateString);
 
                     var (longestBearStreakString, longestBearStreakStartDateString, longestBearStreakEndDateString) = JsonDataManagement.BearishMarket(startDateString, endDateString);
+
+
+                    var dates = bitcoinData.Select(data => data.DateTime).ToList();
+                    var prices = bitcoinData.Select(data => data.Price).ToList();
+
+                    UpdateChart(dates, prices);
 
 
 
@@ -191,9 +211,33 @@ namespace BitcoinMarketAnalyzer
         }
 
 
-        private void dataGVBitcoin_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
+
+
+        private void UpdateChart(List<DateTime> dates, List<decimal> prices)
+        {
+            bitcoinDataChart.Series.Clear();
+            bitcoinDataChart.ChartAreas.Clear();
+
+            ChartArea chartArea = new ChartArea("BitcoinPrices");
+            chartArea.AxisX.Title = "Date";
+            chartArea.AxisY.Title = "Price (€)";
+            chartArea.AxisX.LabelStyle.Format = "yyyy-MM-dd";
+            bitcoinDataChart.ChartAreas.Add(chartArea);
+
+            Series series = new Series("Bitcoin Price");
+            series.ChartType = SeriesChartType.Line;
+            series.XValueType = ChartValueType.DateTime;
+
+            for (int i = 0; i < dates.Count; i++)
+            {
+                series.Points.AddXY(dates[i], prices[i]);
+            }
+
+            bitcoinDataChart.Series.Add(series);
         }
+
+
+
     }
 }

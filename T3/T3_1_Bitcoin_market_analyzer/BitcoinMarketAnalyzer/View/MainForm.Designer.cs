@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             dateStart = new DateTimePicker();
             dateEnd = new DateTimePicker();
             label1 = new Label();
@@ -59,12 +62,14 @@
             groupBox1 = new GroupBox();
             dayToSellLbl = new Label();
             dayToBuyLbl = new Label();
+            bitcoinDataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             gbDateSearch.SuspendLayout();
             gbBitcoinValue.SuspendLayout();
             gbTradingVolume.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bitcoinDataChart).BeginInit();
             SuspendLayout();
             // 
             // dateStart
@@ -374,11 +379,30 @@
             dayToBuyLbl.TabIndex = 0;
             dayToBuyLbl.Text = "Best day to buy";
             // 
+            // bitcoinDataChart
+            // 
+            chartArea1.Name = "ChartArea1";
+            bitcoinDataChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            bitcoinDataChart.Legends.Add(legend1);
+            bitcoinDataChart.Location = new Point(12, 338);
+            bitcoinDataChart.Name = "bitcoinDataChart";
+            bitcoinDataChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            bitcoinDataChart.Series.Add(series1);
+            bitcoinDataChart.Size = new Size(1124, 301);
+            bitcoinDataChart.TabIndex = 12;
+            bitcoinDataChart.Text = "chart1";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1158, 651);
+            Controls.Add(bitcoinDataChart);
             Controls.Add(groupBox1);
             Controls.Add(groupBox5);
             Controls.Add(groupBox4);
@@ -401,6 +425,7 @@
             groupBox5.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)bitcoinDataChart).EndInit();
             ResumeLayout(false);
         }
 
@@ -437,5 +462,6 @@
         private GroupBox groupBox1;
         private Label dayToSellLbl;
         private Label dayToBuyLbl;
+        private System.Windows.Forms.DataVisualization.Charting.Chart bitcoinDataChart;
     }
 }
