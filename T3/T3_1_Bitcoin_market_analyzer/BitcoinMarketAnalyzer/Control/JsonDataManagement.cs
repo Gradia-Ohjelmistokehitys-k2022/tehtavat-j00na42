@@ -37,8 +37,6 @@ namespace BitcoinMarketAnalyzer.Control
             string url = $"https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=eur&from={startTimestamp}&to={endTimestamp}&{local}";
 
 
-
-
             if (cachedBitcoinResponse != null)
             {
                 return cachedBitcoinResponse;
@@ -66,8 +64,6 @@ namespace BitcoinMarketAnalyzer.Control
         {
             cachedBitcoinResponse = null;
         }
-
-
 
 
         public static List<Bitcoin> GetBitcoins(string startDate, string endDate)
@@ -103,8 +99,6 @@ namespace BitcoinMarketAnalyzer.Control
 
             return new List<Bitcoin>();
         }
-
-
 
 
         public static (Bitcoin MaxPriceBitcoin, Bitcoin MinPriceBitcoin) GetMaxAndMinBitcoins(string startDate, string endDate)
@@ -174,8 +168,6 @@ namespace BitcoinMarketAnalyzer.Control
 
         public static (string LongestStreak, string LongestStreakStartDate, string LongestStreakEndDate) BullishMarket(string startDate, string endDate)
         {
-
-
             List<Bitcoin> bitcoins = GetBitcoins(startDate, endDate);
 
             var dailyMax = bitcoins
@@ -238,11 +230,6 @@ namespace BitcoinMarketAnalyzer.Control
                 return (longestBullStreakString, longestBullStreakStartDateString, longestBullStreakEndDateString);
             }
         }
-
-
-
-
-
 
 
         public static (string LongestStreak, string LongestStreakStartDate, string LongestStreakEndDate) BearishMarket(string startDate, string endDate)
@@ -309,11 +296,6 @@ namespace BitcoinMarketAnalyzer.Control
         }
 
 
-
-
-
-
-
         public static string BestTimeToBuy(string startDate, string endDate)
         {
             List<Bitcoin> bitcoins = GetBitcoins(startDate, endDate);
@@ -344,7 +326,6 @@ namespace BitcoinMarketAnalyzer.Control
                 string bestDayToBuy = " - ";
                 return bestDayToBuy;
             }
-            
         }
 
         public static string BestTimeToSell(string startDate, string endDate)
@@ -377,17 +358,9 @@ namespace BitcoinMarketAnalyzer.Control
                 string bestDayToSell = " - ";
                 return bestDayToSell;
             }
-
         }
 
         //
-
-
-
-
-
-
-
 
 
         private static DateTime GetDateTimeFromBicoinsDB(BitcoinJsonResponse bitcoins, int row)
@@ -409,6 +382,7 @@ namespace BitcoinMarketAnalyzer.Control
         {
             return decimal.Parse(bitcoins.Total_volumes[row, 1].Replace('.', ','));
         }
+
         //
     }
 }

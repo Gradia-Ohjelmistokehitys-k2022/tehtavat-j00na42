@@ -24,8 +24,6 @@ namespace BitcoinMarketAnalyzer
         public DateTime startDate;
         public DateTime endDate;
 
-        List<DateTime> xValues = new List<DateTime>();
-        List<double> yValues = new List<double>();
 
         public MainForm()
         {
@@ -35,9 +33,6 @@ namespace BitcoinMarketAnalyzer
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //
-
-
             // Configure date times to not go beyond one year as guided in Coingecko.
 
             dateStart.MaxDate = DateTime.Now;
@@ -109,10 +104,6 @@ namespace BitcoinMarketAnalyzer
             bearLbl.Text = "Longest bearish trend was " + longestBearStreakString + " days";
             bearStartLbl.Text = "From " + longestBearStreakStartDateString;
             bearEndLbl.Text = "To " + longestBearStreakEndDateString;
-
-
-            
-
         }
 
         private void dateStart_ValueChanged(object sender, EventArgs e)
@@ -236,8 +227,5 @@ namespace BitcoinMarketAnalyzer
 
             bitcoinDataChart.Series.Add(series);
         }
-
-
-
     }
 }
